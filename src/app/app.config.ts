@@ -10,8 +10,11 @@ import { ToDoReducer } from './toDo/to-do.reducer';
 import { provideStore } from '@ngrx/store';
 import { provideHttpClient } from '@angular/common/http';
 import { provideEffects } from '@ngrx/effects';
-import { TodoEffects } from './toDo/to-do.effects';
+// import { TodoEffects } from './toDo/to-do.effects';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura';
 
 
 export const appConfig: ApplicationConfig = {
@@ -21,8 +24,14 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), // ✅ Firebase أولاً
     provideFirestore(() => getFirestore()),
     provideStore({ todo: ToDoReducer }),      // ✅ Store قبل Effects
-    provideEffects([TodoEffects]),            // ✅ Effects بعد Store
+    // provideEffects([TodoEffects]),            // ✅ Effects بعد Store
     provideHttpClient(),
-    provideAnimations()
+    provideAnimations(),
+     provideAnimationsAsync(),
+        providePrimeNG({
+            theme: {
+                preset: Aura
+            }
+        })
   ]
 };

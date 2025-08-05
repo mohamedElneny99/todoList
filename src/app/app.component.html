@@ -1,53 +1,28 @@
-<div class="container mt-4">
-  <h2 class="text-center">📝 ToDo List</h2>
-
-  <div class="input-group mb-3">
-    <input type="text" [(ngModel)]="newTaskTitle" class="form-control" placeholder="Add new task">
-    <button (click)="addTask()" class="btn btn-primary">Add</button>
-  </div>
-
-  <div *ngIf="loading$ | async" class="alert alert-info">Loading...</div>
-  <div *ngIf="error$ | async as error" class="alert alert-danger">Error: {{ error }}</div>
-
-  <ul class="list-group">
-    <li *ngFor="let task of tasks$ | async" class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <input type="checkbox" [checked]="task.completed" (change)="toggleTask(task)" />
-        <span [ngClass]="{ 'text-decoration-line-through': task.completed }">
-          {{ task.title }}
-        </span>
-      </div>
-      <button class="btn btn-sm btn-danger" (click)="deleteTask(task.id)">Delete</button>
-    </li>
-  </ul>
-</div>
-
-
-
-
-
-
-<!-- <div class="container mt-5">
+<div class="container mt-5">
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
-      <h3 class="text-center m-0">📝 My To-Do List</h3>
+      <h3 class="text-center m-0">📝 ToDo List</h3>
     </div>
+
     <div class="card-body">
       <form (ngSubmit)="addTask()" class="d-flex mb-3">
         <input
-          [(ngModel)]="newTask"
-          name="task"
+          [(ngModel)]="newTaskTitle"
+          name="taskTitle"
           type="text"
           class="form-control me-2"
-          placeholder="Enter a new task"
+          placeholder="Add new task"
           required
         />
         <button class="btn btn-success" type="submit">Add</button>
       </form>
 
+      <div *ngIf="loading$ | async" class="alert alert-info">Loading...</div>
+      <div *ngIf="error$ | async as error" class="alert alert-danger">Error: {{ error }}</div>
+
       <ul class="list-group">
         <li
-          *ngFor="let task of tasks; let i = index"
+          *ngFor="let task of tasks$ | async"
           class="list-group-item d-flex justify-content-between align-items-center"
           [ngClass]="{ 'list-group-item-success': task.completed }"
         >
@@ -55,18 +30,22 @@
             <input
               type="checkbox"
               class="form-check-input me-2"
-              [(ngModel)]="task.completed"
-              name="check{{ i }}"
+              [checked]="task.completed"
+              (change)="toggleTask(task)"
             />
             <span [class.text-decoration-line-through]="task.completed">
               {{ task.title }}
             </span>
           </div>
-          <button class="btn btn-danger btn-sm" (click)="deleteTask(i)">
+          <button class="btn btn-danger btn-sm" (click)="deleteTask(task.id)">
             Delete
           </button>
         </li>
       </ul>
     </div>
   </div>
-</div> -->
+</div>
+
+
+
+

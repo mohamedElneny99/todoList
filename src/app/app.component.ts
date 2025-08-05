@@ -7,13 +7,16 @@ import * as fromToDo from '../app/toDo/to-do.selectors';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+import { ButtonModule, Button } from 'primeng/button';
+
 @Component({
   selector: 'app-root',
-  imports: [CommonModule , FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
+
   tasks$!: Observable<Task[]>;
   loading$!: Observable<boolean>;
   error$!: Observable<any>;
@@ -48,6 +51,13 @@ export class AppComponent implements OnInit {
   toggleTask(task: Task) {
     this.store.dispatch(ToDoActions.toggleTask({ id: task.id, completed: !task.completed }));
   }
+
+
+
+
+
+
+
 }
 
 
@@ -70,22 +80,6 @@ export class AppComponent implements OnInit {
 //   styleUrl: './app.component.css'
 // })
 // export class AppComponent {
-//   newTask: string = '';
-//   tasks: Task[] = [];
 
-//   addTask() {
-//     if (!this.newTask.trim()) return;
-
-//     this.tasks.push({
-//       title: this.newTask.trim(),
-//       completed: false,
-//     });
-
-//     this.newTask = '';
-//   }
-
-//   deleteTask(index: number) {
-//     this.tasks.splice(index, 1);
-//   }
 
 // }
