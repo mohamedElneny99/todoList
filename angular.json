@@ -14,7 +14,7 @@
           "builder": "@angular/build:application",
           "options": {
             "outputPath": "dist/to-do-list",
-            "baseHref": "/to-do-list/",
+            "baseHref": "/todoList/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
